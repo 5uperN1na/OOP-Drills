@@ -109,13 +109,13 @@ p5.message();
 //So to keep it simple lets have this vehicle class construct an object that only has the properties manufacturer and number of wheels.
 
 class Vehicle {
-    constructor (manufacturer, type, wheels){
+    constructor(manufacturer, type, wheels) {
 
-    
+
         this.manufacturer = manufacturer;
         this.type = type;
         this.wheels = wheels;
-      
+
     }
 
     //Include a method called aboutVehicle, have it console log a string which will say what type of vehicle it is, who made it, and how many wheels it has.
@@ -124,29 +124,70 @@ class Vehicle {
     }
 }
 
+v1 = new Vehicle('Jeep', 'Grand Cherokee', '4');
+v1.aboutVehicle();
 
 //Trucks are vehicles, they have wheels. 
 //So let’s create a vehicle class that inherits the property of wheels from vehicle, but trucks have doors (unlike motorcycles) and they have a truck bed. 
 //So let’s add a number of doors property to this object as well as a boolean they it is true, it has a truck bed.
 
-class Truck extends Vehicle{
-    constructor (manufacturer, type, wheels, doors, bed){
-        super (manufacturer, type, wheels);
+class Truck extends Vehicle {
+    constructor(manufacturer, type, wheels, doors, bed) {
+        super(manufacturer, type, wheels);
         this.doors = doors;
-        this.bed = bed; 
-        bed = true;
-        
+        this.bed = bed;
+        this.bed = true;
+        this.bed = this.bed.toString('yes');
+
     }
 
     aboutVehicle() {
-        console.log(`This is a ${this.manufacturer} , ${this.type} and it has ${this.wheels} wheels. It also has ${this.doors} and has a ${this.bed}`);
+        console.log(`This is a ${this.manufacturer} , ${this.type} and it has ${this.wheels} wheels. It also has ${this.doors} doors and has ${this.bed} truck bed.`);
     }
 }
 
-
-v1 = new Vehicle('Jeep', 'Grand Cherokee', '4');
-v1.aboutVehicle();
-
-t1 = new Truck('Ford', 'F150', '4', '2', true);
+t1 = new Truck('Ford', 'F150', '4', '2');
 t1.aboutVehicle();
 
+
+//Now sedans are vehicles also, but they don’t have a truck bed (We’re ignoring the fact El Caminos broke this rule), they do have doors as well as 4 wheels. 
+//So to practice inheritance, lets just say sedans are vehicles, they aren’t trucks because they don’t have a truck bed but they get good gas mileage. 
+//Create a class sedan which extends vehicle, give it an additional property of size which could be small or medium, and give it a property of mpg.
+
+
+class Sedan extends Vehicle {
+    constructor(manufacturer, type, wheels, doors, size, mpg) {
+        super(manufacturer, type, wheels);
+        this.doors = doors;
+        this.size = size;
+        this.mpg = mpg;
+      
+    }
+
+    aboutVehicle() {
+        console.log(`This is a ${this.manufacturer} , ${this.type} and it has ${this.wheels} wheels. It also has ${this.doors} doors and it is a ${this.size} sized sedan with ${this.mpg} mpg`);
+    }
+}
+
+s1 = new Sedan('Nissan', 'Altima', '4', '4', 'medium', '14');
+s1.aboutVehicle();
+
+//Motorcycles are also vehicles, but they don’t have doors, or 4 wheels, or go in reverse (technically). 
+//So create a class motorcycle that extends vehicle, have it include a property to determine that it has handlebars and not a steering wheel, as well as another property to show it has no doors.
+
+
+class Motorcycle extends Vehicle {
+    constructor(manufacturer, type, wheels, doors, handlebars) {
+        super(manufacturer, type, wheels);
+        this.doors = doors;
+        this.handlebars = handlebars;
+      
+    }
+
+    aboutVehicle() {
+        console.log(`This is a ${this.manufacturer} , ${this.type} and it has ${this.wheels} wheels. It also has ${this.doors} doors and it has ${this.handlebars} handlebar.`);
+    }
+}
+
+m1 = new Motorcycle ('Harley-Davidson', 'Mule', '2', '0', '1');
+m1.aboutVehicle();
